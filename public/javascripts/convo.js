@@ -18,7 +18,7 @@ botui.message.add({
   }).then(function () {
     socket.on('fromServer', function (data) { // recieveing a reply from server.
       console.log(data.server);
-      console.log(data);
+      //console.log(data);
       newMessage(data);
     })
   });

@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
+var hookroutes = require('./routes/hookroutes');
 
 var socket = require('./config/sock');
 
@@ -24,6 +25,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 console.log('Server Started at Port 3000');
 app.use('/', index);
+app.use(hookroutes);
 socket.conn();
 socket.fromClient();
 
