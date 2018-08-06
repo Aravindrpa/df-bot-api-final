@@ -53,7 +53,7 @@ function Process(message, socket) {
     }
   }
 
-
+  //TODO: If something else
   
 }
 
@@ -63,6 +63,7 @@ function isArray(jobj) {
   return Object.prototype.toString.call(jobj) === '[object Array]';
 }
 
+//check if object keys are same
 function isSame(a, b) {
   var aKeys = Object.keys(a).sort();
   var bKeys = Object.keys(b).sort();

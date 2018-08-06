@@ -1,5 +1,25 @@
 /*This is where to put the code for custom responses -- interacting with DB or any other extenal sources are to be initiated from here*/
 var responseModels = require('../models/responses');
+var mysql = require('mysql');
+
+
+var con = mysql.createConnection({
+    host: "TVMATP379588D",
+    port: 3306,
+    user: "crossopsuser",
+    password: "ops@123" //TODO: handle hardcodeing here
+});
+
+var getDBResult = function (con, query) {
+    con.connect(function (err) {
+        if (err) throw err;
+        con.query(query, function (err, result, fields) {
+            if (err) throw err;
+            console.log(result);
+        });
+    });
+}
+//var res = getDBResult(con,"Select * from someTable");
 
 module.exports = {
 
@@ -14,6 +34,7 @@ module.exports = {
         }
     },
 
+    // ACTIONS
 
     get_TextSingle: function (req, res, next) {
 
@@ -21,9 +42,9 @@ module.exports = {
     },
 
     get_TextMultiple: function (req, res, next) {
-        var stringList =  responseModels.StringList
-        stringList.text.text = ["Lin1","Lin2 : [Link](http://www.google.com)"]
-        return res.json({fulfillmentMessages: [stringList]});
+        var stringList = responseModels.StringList
+        stringList.text.text = ["Lin1", "[This is supposed show as link: http://www.google.com](http://www.google.com)"]
+        return res.json({ fulfillmentMessages: [stringList] });
     }
 
     //{

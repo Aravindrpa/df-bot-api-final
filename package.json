@@ -6,6 +6,7 @@
     "start": "node ./bin/www"
   },
   "dependencies": {
+    "api-bot": "0.0.1",
     "apiai": "^4.0.3",
     "body-parser": "^1.18.3",
     "circular-json": "^0.3.3",
@@ -14,6 +15,8 @@
     "ejs": "~2.5.6",
     "express": "^4.16.3",
     "morgan": "^1.9.0",
+    "mysql": "^2.16.0",
+    "npm": "^6.3.0",
     "serve-favicon": "^2.5.0",
     "socket.io": "^2.1.1",
     "yargs": "*"
