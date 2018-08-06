@@ -11,19 +11,24 @@ botui.message.add({
     action: {
       placeholder: 'Say Hello',
     }
-  }
-  ).then(function (res) {
+  }).then(function (res) {
     socket.emit('fromClient', { client: res.value }); // sends the message typed to server
     console.log(res.value); // will print whatever was typed in the field.
   }).then(function () {
     socket.on('fromServer', function (data) { // recieveing a reply from server.
       console.log(data.server);
-      //console.log(data);
+      try {
+        if (data.server.include("_BTN_:")) {
+          console.log("TEST");
+        }
+      }
+      catch (error) {
+        console.log(error);
+      }
       newMessage(data);
     })
   });
 })
-
 
 function newMessage(response) {
   try {
@@ -41,8 +46,40 @@ function newMessage(response) {
     content: response.server,
     delay: 0,
   });
-  
+
   addAction();
+}
+
+function newButton(response) {
+  var val = response.server.slice(5).trimStart();
+  console.log("bt " + val);
+  try {
+    console.log(response);
+    if (response.result.metadata.endConversation === true) {
+      console.log("Conversation ended"); //TODO: Handle if required
+    }
+  }
+  catch (error) {
+    console.log("Some exception");
+    console.error(error);
+  }
+
+  botui.action.button({
+    action: [
+      { // show only one button
+        text: val,
+        value: val
+      }
+    ]
+  }).then(function (res) { // will be called when a button is clicked.
+    console.log(res.value); // will print "one" from 'value'
+    botui.message.add({
+      content: res.value,
+      delay: 0,
+    });
+  });
+
+  //addAction();
 }
 
 function addAction() {

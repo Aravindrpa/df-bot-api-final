@@ -46,13 +46,10 @@ module.exports = {
         stringList.text.text = ["Lin1", "[This is supposed show as link: http://www.google.com](http://www.google.com)"]
         return res.json({ fulfillmentMessages: [stringList] });
     },
-    get_Buttons: function (req, res, next) {
-        var array = ["Button1"];
-        var fulfil = {fulfillmentMessages:[]};
-        array.forEach(x =>{
-            fulfil.fulfillmentMessages.push({text:x,postback:x});
-        });
-        return res.json(fulfil);
+    get_Content: function (req, res, next) {
+        var stringList = responseModels.StringList
+        stringList.text.text = ["_BTN_:Lin1","_URL_:http://www.google.com" ,"[This is supposed show as link: http://www.google.com](http://www.google.com)"]
+        return res.json({ fulfillmentMessages: [stringList] });
     }
 
     //{
