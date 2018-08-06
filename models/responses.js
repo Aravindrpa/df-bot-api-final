@@ -7,6 +7,11 @@ module.exports = {
             "Line2"
         ]
     }
+},
+Button:{
+    text:"Name",
+    postback:"value"
 }
+
 }
 

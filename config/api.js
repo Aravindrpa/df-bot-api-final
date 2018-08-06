@@ -3,7 +3,7 @@ var apiai = require('apiai');
 // read the api.ai docs : https://api.ai/docs/
 
 //Enter your API Key
-var app = apiai('aea6ea6f29b14fbf843bc8b6c07848d4');
+var app = apiai('96f79321ccc14e288c604891d73c9daa');
 //var app = apiai('ca7612c4853f47e7b99da21a7786e22e'); 
 
 
@@ -19,16 +19,6 @@ var getRes = function (query) {
         reject(error);
       });
       request.on('response', function (response) {
-        //console.log(response);
-        //try{
-        //console.log(response.result.fulfillment.messages[0].speech); 
-        ////TODO: Handle multiple messages
-        //}
-        //catch(error)
-        //{}
-        //if(response.result.metadata.endConversation === true)
-        //resolve(response.result.fulfillment.speech);
-        //console.log(response);
         resolve(response);
       });
     });

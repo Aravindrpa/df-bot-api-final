@@ -52,6 +52,7 @@ function Process(message, socket) {
       socket.emit('fromServer', { server: message.speech });
     }
   }
+  
 
   //TODO: If something else
   

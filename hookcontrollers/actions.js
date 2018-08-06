@@ -7,7 +7,7 @@ var con = mysql.createConnection({
     host: "TVMATP379588D",
     port: 3306,
     user: "crossopsuser",
-    password: "ops@123" //TODO: handle hardcodeing here
+    password: "ops@123" //TODO: handle hardcoding here
 });
 
 var getDBResult = function (con, query) {
@@ -38,13 +38,21 @@ module.exports = {
 
     get_TextSingle: function (req, res, next) {
 
-        return res.json({ fulfillmentText: "This is the default message - Single fulfillmentText " });
+        return res.json({ fulfillmentText: "This is the default message - Single fulfillmentText" });
     },
 
     get_TextMultiple: function (req, res, next) {
         var stringList = responseModels.StringList
         stringList.text.text = ["Lin1", "[This is supposed show as link: http://www.google.com](http://www.google.com)"]
         return res.json({ fulfillmentMessages: [stringList] });
+    },
+    get_Buttons: function (req, res, next) {
+        var array = ["Button1"];
+        var fulfil = {fulfillmentMessages:[]};
+        array.forEach(x =>{
+            fulfil.fulfillmentMessages.push({text:x,postback:x});
+        });
+        return res.json(fulfil);
     }
 
     //{
